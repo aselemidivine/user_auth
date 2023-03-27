@@ -1,14 +1,6 @@
 const router = require("express").Router();
-const { verifyUserOTP, signUp,requestOTP} = require("../controller/userController")
+const { verifyUserOTP, signUp, requestOTP, login} = require("../controller/userController")
 
-// Registering the user.
-// router.post("/signup", userController.signUp);
-
-// // Verifying the user.
-// router.post("/verify", userController.verifyUserOTP);
-
-// // login the user.
-// router.post("/login", userController.login);
 
 
 router.route("/signup")
@@ -20,6 +12,11 @@ router.route("/verify")
 
 router.route("/request_otp")
     .post(requestOTP);
+
+router.route("/login")
+    .post(login);
+
+    
 
 module.exports = router;
 
