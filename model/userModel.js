@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const userSchema = Schema({
     name: {
         type: String,
-        required: true,
+        // required: true,
 
     },
     email: {
@@ -24,14 +24,14 @@ const userSchema = Schema({
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
     }
 }, { timestamps: true});
 
 userSchema.methods.generateJWT = function() {
     const token = jwt.sign({
         _id: this.id,
-        number: this.number
+        phone: this.phone
     }, process.env.JWT_SECRET_KEY, {expiresIn: "7d" })
 }
 

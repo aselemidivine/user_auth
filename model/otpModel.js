@@ -8,7 +8,7 @@ module.exports.Otp = model('Otp', Schema({
     },
     phone: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,    
