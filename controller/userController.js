@@ -132,36 +132,37 @@ module.exports.login = async(req, res) => {
 
 
 // Main 22
-module.exports.verifyUserOTP = async (req, res) => {
-    const { phone, otp } = req.body;
+// module.exports.verifyUserOTP = async (req, res) => {
+//     const { phone, otp } = req.body;
   
-    try {
-      const otpDoc = await Otp.find({ otp: otp });
+//     try {
+//       const otpDoc = await Otp.find({ otp: otp });
   
-      if (!otpDoc) {
-        return res.send("Incorrect OTP");
-      }
+//       if (!otpDoc) {
+//         return res.send("Incorrect OTP");
+//       }
   
-      const userDoc = await User.findById(otpDoc.userId);
+//       const userDoc = await User.findById(otpDoc.userId);
       
-      console.log(userDoc)
-      if (!userDoc) {
-        return res.send("Incorrect OTP or it has been expired.");
-      }
+//       console.log(userDoc)
+//       if (!userDoc) {
+//         return res.send("Incorrect OTP or it has been expired.");
+//       }
   
-    //   if (phone !== userDoc.phone) {
-    //     return res.send("Incorrect OTP or it has been expired.");
-    //   }
+//     //   if (phone !== userDoc.phone) {
+//     //     return res.send("Incorrect OTP or it has been expired.");
+//     //   }
   
-      await User.findByIdAndUpdate(otpDoc.userId, { verified: true });
-      await Otp.deleteOne({ _id: otpDoc._id });
+//       await User.findByIdAndUpdate(otpDoc.userId, { verified: true });
+//       await Otp.deleteOne({ _id: otpDoc._id });
   
-      res.send("has been successfully verified");
-    } catch (err) {
-      console.error(err);
-      res.status(500).send({ error: "Internal server error" });
-    }
-  };
+//       res.send("has been successfully verified");
+//     } catch (err) {
+//       console.error(err);
+//       res.status(500).send({ error: "Internal server error" });
+//     }
+//   };
+
 
 module.exports.verifyUserOTP = async (req, res) => {
     const { name, phone, password, otp } = req.body;
