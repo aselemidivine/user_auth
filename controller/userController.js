@@ -108,10 +108,10 @@ module.exports.login = async (req, res) => {
   const { phone, password } = req.body;
 
   // login validate requests
-  let validate_response = signUpRequestSerializer(req,res);
-  if(validate_response){
-      return validate_response;
-  }
+  // let validate_response = signUpRequestSerializer(req,res);
+  // if(validate_response){
+  //     return validate_response;
+  // }
 
   // check if phone number is a valid integer
   if (!isStringConvertibleToInt(phone)) {
