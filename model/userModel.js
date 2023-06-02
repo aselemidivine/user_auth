@@ -1,14 +1,10 @@
 const {Schema, model} = require('mongoose');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-
 
 const userSchema = Schema({
     name: {
         type: String,
         // required: true,
-
     },
     email: {
         type: String,

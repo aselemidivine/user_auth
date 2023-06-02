@@ -6,8 +6,7 @@ function useResponse(user) {
     };
   }
   
-
- const signUpRequestSerializer= (req,res) =>{
+ const signUpRequestSerializer = (req, res, next) =>{
     const { name, phone, password, confirm_password } = req.body;
 
     // Check if name is provided and it's a non-empty string
@@ -29,7 +28,13 @@ function useResponse(user) {
     if (!confirm_password || typeof confirm_password !== 'string' || confirm_password.trim().length === 0) {
       return res.status(400).json({ error: 'Please provide a valid confirmation password' });
     }
-    return false;
+    if (password !== confirm_password) {
+      // It returns an error if the password does not match
+      return res.status(400).send({
+        error: "Password does not match"
+      });
+    }
+    return next();
 }
 
 

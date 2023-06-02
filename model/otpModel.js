@@ -24,6 +24,3 @@ module.exports.Otp = model('Otp', Schema({
     }
 // Expires after 5 minutes and deleted automatically from the database
 }, { timestamps: true }))
-
-
-
