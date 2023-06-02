@@ -5,7 +5,7 @@ const otpController = require("../controller/otpController");
 const productController = require("../controller/productController");
 const jwtMiddleware = require("../middleware/jwt");
 const  { signUpRequestSerializer }  = require("../serializer/userSerializers");
-const filemiddleware = require("../middleware/verifyfile");
+const filemiddleware = require("../middleware/multer");
 const upload = multer({ dest: 'uploads/files' });
 
 // Registering the user.
