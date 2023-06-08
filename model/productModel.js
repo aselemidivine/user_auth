@@ -10,6 +10,9 @@ const productSchema = Schema({
     description: {
         type: String,
     },
+    categoryId: {
+        type: String,
+    },
     imageUrl: {
         type: String,
     },
@@ -26,4 +29,3 @@ const productSchema = Schema({
 }, { timestamps: true});
 
 module.exports.Product = model('Product', productSchema);
-

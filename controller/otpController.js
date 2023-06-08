@@ -44,6 +44,9 @@ module.exports.verifyUserOTP = async (req, res) => {
     const token = await jwt.sign({ id: existingUser._id, phone }, process.env.JWT_SECRET, {
       expiresIn: '24h',
     });
+    // make sure user is verified
+    await User.findByIdAndUpdate(existingUser._id,
+      { is_verified: true }, { useFindAndModify: false });
     if (existingUser) {
         return res.status(201).send({
           message: "Registration successful",

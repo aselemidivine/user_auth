@@ -54,7 +54,7 @@ module.exports.login = async (req, res) => {
   }
 
   // check if phone number exist
-  const user = await User.findOne({ phone })
+  const user = await User.findOne({ phone });
   if (!user) {
     return res.status(400).json({ error: "Phone number is not registered" });
   }
@@ -63,6 +63,10 @@ module.exports.login = async (req, res) => {
   if (!isPasswordMatched) {
     return res.status(400).json({ error: "Invalid Password" });
   }
+  // check if user is verified
+  if(!user.is_verified) {
+    return res.status(400).json({ error: "Phone number is not verified" });
+  }
   // jwt token
   const token = await jwt.sign({ id: user._id, phone }, process.env.JWT_SECRET, {
     expiresIn: '24h',
@@ -70,12 +74,7 @@ module.exports.login = async (req, res) => {
   // return a success message with user details and token.
   return res.status(200).json({
     message: "Login successful",
-    user: {
-      id: user._id,
-      name: user.name,
-      phone: user.phone,
-      userToken: token,
-      created_at: user.createdAt
-    }
+    user_token: token,
+    user,
   });
 };

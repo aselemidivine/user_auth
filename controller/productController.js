@@ -19,6 +19,7 @@ module.exports.createProduct = async (req, res) => {
       title,
       price,
       description,
+      categoryId,
     } = req.body;
 
     const uploadedImage = await cloudinary.uploader.upload(req.files[0].path);
@@ -28,6 +29,7 @@ module.exports.createProduct = async (req, res) => {
       title,
       price,
       description,
+      categoryId,
       imageUrl: uploadedImage.secure_url,
       secondImageUrl: uploadedSecondImage.secure_url,
       thirdImageUrl: uploadedThirdImage.secure_url,
@@ -84,7 +86,7 @@ module.exports.modifyProduct = async (req, res) => {
       });
     } 
     await Product.findByIdAndUpdate(id, req.body, { useFindAndModify: false });
-    return res.status(200).json({ message: "Tutorial was updated successfully." })
+    return res.status(200).json({ message: "Product was updated successfully." })
 
   } catch (err) {
     return res.status(500).json({ message: err });

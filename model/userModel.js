@@ -17,7 +17,7 @@ const userSchema = Schema({
     },
     is_verified:{
         type: Boolean,
-        required:false,
+        required:true,
         default: false
     },
     password: {
@@ -42,8 +42,6 @@ userSchema.pre("save", async function (next) {
     return bcrypt.compare(password, user.password);
   };
 
-
-
 // userSchema.methods.generateJWT = function() {
 //     const token = jwt.sign({
 //         _id: this.id,
@@ -52,4 +50,3 @@ userSchema.pre("save", async function (next) {
 // }
 
 module.exports.User = model('User', userSchema);
-
