@@ -25,7 +25,7 @@ module.exports.requestOTP = async (req, res) => {
 
 
 module.exports.verifyUserOTP = async (req, res) => {
-    const { name, phone, password, otp } = req.body;
+    const { phone, otp } = req.body;
     // Check if the OTP is valid
     const otpRecord = await Otp.findOne({ otp });
     if (!otpRecord) {
